@@ -7,19 +7,6 @@ candidates = []
 candidate_totals = {}
 candidate_percents = {}
 
-#Creating string output for txt file
-def election_analysis(candidates, candidate_totals, candidate_percents):
-    summary_string = f"""Election Results
--------------------------
-Total Votes: {total_votes}
--------------------------\n"""
-    for candidate in candidates:
-        summary_string += (f"{candidate}: {candidate_percents[candidate]}% ({candidate_totals[candidate]})\n")
-    summary_string += f"""-------------------------
-Winner: {winner}
--------------------------"""
-    return summary_string
-
 election_path = os.path.join("..", "PyPoll", "election_data.csv")
 
 with open(election_path, newline='', encoding="utf-8") as csv_file:
@@ -48,6 +35,19 @@ for candidate in candidates:
 
 #Winner of the election based on popular vote
 winner = max(candidate_totals, key=candidate_totals.get)
+
+#Creating string output for txt file
+def election_analysis(candidates, candidate_totals, candidate_percents):
+    summary_string = f"""Election Results
+-------------------------
+Total Votes: {total_votes}
+-------------------------\n"""
+    for candidate in candidates:
+        summary_string += (f"{candidate}: {candidate_percents[candidate]}% ({candidate_totals[candidate]})\n")
+    summary_string += f"""-------------------------
+Winner: {winner}
+-------------------------"""
+    return summary_string
 
 #Print summary table to terminal
 print(election_analysis(candidates, candidate_totals, candidate_percents))

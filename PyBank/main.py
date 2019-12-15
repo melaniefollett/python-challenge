@@ -5,17 +5,6 @@ total_profitloss = 0
 max_profitloss = 0
 min_profitloss = 0
 
-#Creating string output for txt file
-def financial_analysis(data_summary):
-    summary_string = f"""Financial Analysis
-----------------------------
-Total Months: {data_summary['total_months']}
-Total: ${data_summary['total_profitloss']}
-Average Change: ${data_summary['avg_profitloss']}
-Greatest Increase in Profits: {data_summary['max_month']} ${data_summary['max_profitloss']}
-Greatest Decrease in Profits: {data_summary['min_month']} ${data_summary['min_profitloss']}"""
-    return summary_string
-
 budget_path = os.path.join("..", "PyBank", "budget_data.csv")
 
 with open(budget_path, newline='', encoding="utf-8") as csv_file:
@@ -57,6 +46,17 @@ data_summary = {
     "max_month": max_month,
     "min_month": min_month
 }
+
+#Creating string output for txt file
+def financial_analysis(data_summary):
+    summary_string = f"""Financial Analysis
+----------------------------
+Total Months: {data_summary['total_months']}
+Total: ${data_summary['total_profitloss']}
+Average Change: ${data_summary['avg_profitloss']}
+Greatest Increase in Profits: {data_summary['max_month']} ${data_summary['max_profitloss']}
+Greatest Decrease in Profits: {data_summary['min_month']} ${data_summary['min_profitloss']}"""
+    return summary_string
 
 #Print summary table to terminal
 print(financial_analysis(data_summary))
